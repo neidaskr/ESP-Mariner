@@ -1,10 +1,8 @@
-# Laivelis Pinouts
+# Pinouts
 
 This file documents the active pin mappings used by the current firmware.
 
 ## Remote / Ground Station ESP32
-
-Source: `remote_control/remote_control.ino`
 
 ### nRF24L01+
 
@@ -46,8 +44,6 @@ Source: `remote_control/remote_control.ino`
 - AP password: `Laivelis123`
 
 ## Boat Receiver ESP32-S3
-
-Source: `boat_receiver/boat_receiver.ino`
 
 ### Motor Driver
 
