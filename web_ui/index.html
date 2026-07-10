@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laivelio V3 Bridge</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="layout">
+    <header class="topbar">
+      <h1>Laivelio V3</h1>
+      <div id="conn" class="pill offline">Disconnected</div>
+    </header>
+
+    <section class="card controls">
+      <h2>Manual Control</h2>
+      <div class="grid">
+        <label>
+          Throttle (Y)
+          <input id="y" type="range" min="-1" max="1" step="0.01" value="0" />
+        </label>
+        <label>
+          Steering (X)
+          <input id="x" type="range" min="-1" max="1" step="0.01" value="0" />
+        </label>
+      </div>
+      <div class="grid switches">
+        <label><input id="front" type="checkbox" /> Front Light</label>
+        <label><input id="backLeft" type="checkbox" /> Back Left Light</label>
+        <label><input id="backRight" type="checkbox" /> Back Right Light</label>
+      </div>
+      <button id="drop" type="button">Drop Bait</button>
+      <p class="hint">Command stream: 20 Hz</p>
+    </section>
+
+    <section class="card telemetry">
+      <h2>Telemetry</h2>
+      <div class="health-grid">
+        <div class="health-item"><span>Mode</span><strong id="hMode">-</strong></div>
+        <div class="health-item"><span>Mission</span><strong id="hMission">-</strong></div>
+        <div class="health-item"><span>Waypoint</span><strong id="hWaypoint">-</strong></div>
+        <div class="health-item"><span>Geofence</span><strong id="hGeofence" class="badge">-</strong></div>
+        <div class="health-item"><span>Dock Impact</span><strong id="hDockImpact" class="badge">-</strong></div>
+        <div class="health-item"><span>CRC Invalid RX</span><strong id="hCrc">0</strong></div>
+        <div class="health-item"><span>Radio TX Fails</span><strong id="hTxFail">0</strong></div>
+        <div class="health-item"><span>Last Packet</span><strong id="hLastAck">-</strong></div>
+      </div>
+      <pre id="telemetryJson">Waiting for telemetry...</pre>
+    </section>
+
+    <section class="card mission">
+      <h2>Mission Upload</h2>
+      <div class="grid">
+        <label>
+          Mission ID
+          <input id="missionId" type="number" min="1" max="255" value="1" />
+        </label>
+        <label>
+          Landing Mode
+          <select id="landingMode">
+            <option value="ON_SHORE">ON_SHORE</option>
+            <option value="IN_BOAT">IN_BOAT</option>
+          </select>
+        </label>
+      </div>
+      <label>
+        Waypoints JSON (array of {"lat":...,"lng":...})
+        <textarea id="waypoints" rows="6">[{"lat":54.123456,"lng":24.654321},{"lat":54.123556,"lng":24.654421}]</textarea>
+      </label>
+      <h3>Geofence</h3>
+      <div class="grid">
+        <label><input id="geofenceEnabled" type="checkbox" /> Enable Geofence</label>
+        <label>
+          Radius (m)
+          <input id="geofenceRadius" type="number" min="1" max="6000" value="120" />
+        </label>
+        <label>
+          Center Lat
+          <input id="geofenceLat" type="number" step="0.000001" value="54.123456" />
+        </label>
+        <label>
+          Center Lng
+          <input id="geofenceLng" type="number" step="0.000001" value="24.654321" />
+        </label>
+      </div>
+      <div class="button-row">
+        <button id="applyGeofence" type="button">Apply Geofence</button>
+        <button id="uploadMission" type="button">Upload Mission</button>
+        <button id="startMission" type="button">Start</button>
+        <button id="pauseMission" type="button">Pause</button>
+        <button id="abortMission" type="button">Abort</button>
+        <button id="rthMission" type="button">RTH</button>
+      </div>
+      <h3>Docking Tuning</h3>
+      <div class="grid">
+        <label>
+          Dock PWM (%)
+          <input id="tuneDockPwmPct" type="number" min="1" max="40" step="0.5" value="5" />
+        </label>
+        <label>
+          Impact Threshold (g)
+          <input id="tuneImpactG" type="number" min="0.05" max="3" step="0.01" value="0.22" />
+        </label>
+        <label>
+          RTH Halt Distance (m)
+          <input id="tuneRthHaltM" type="number" min="0.2" max="8" step="0.1" value="1.0" />
+        </label>
+        <label>
+          RTH Decel Start (m)
+          <input id="tuneRthDecelM" type="number" min="0.4" max="50" step="0.1" value="5.0" />
+        </label>
+      </div>
+      <div class="button-row">
+        <button id="applyTuning" type="button">Apply Tuning</button>
+      </div>
+      <p id="missionStatus" class="hint">Mission controls idle.</p>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,8 +1,10 @@
-# Pinouts
+# Laivelis Pinouts
 
 This file documents the active pin mappings used by the current firmware.
 
 ## Remote / Ground Station ESP32
+
+Source: `remote_control/remote_control.ino`
 
 ### nRF24L01+
 
@@ -12,14 +14,14 @@ This file documents the active pin mappings used by the current firmware.
 - MISO: GPIO 19
 - MOSI: GPIO 23
 
-### Joysticks
+/### Joysticks
 
 - Joy 1 X: GPIO 34
 - Joy 1 Y: GPIO 35
 - Joy 2 X: GPIO 32
 - Joy 2 Y: GPIO 33
 
-### Battery Monitor
+/### Battery Monitor
 
 - Battery ADC: GPIO 36
 
@@ -28,22 +30,24 @@ This file documents the active pin mappings used by the current firmware.
 - SDA: GPIO 21
 - SCL: GPIO 22
 
-### Buzzer
+/### Buzzer
 
 - Buzzer: GPIO 27
 
-### Matrix Keypad
+/### Matrix Keypad
 
 - Rows: GPIO 13, 14, 15, 25, 26
 - Columns: GPIO 12, 16
 
-### Wireless / Services
+/### Wireless / Services
 
 - Bluetooth Classic name: `Boat_Ground_Station`
 - AP SSID: `LaivelisRemote`
 - AP password: `Laivelis123`
 
 ## Boat Receiver ESP32-S3
+
+Source: `boat_receiver/boat_receiver.ino`
 
 ### Motor Driver
 
